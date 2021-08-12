@@ -34,7 +34,7 @@ jobs:
     - name: Show result
       run: echo "The curl result is ${{ steps.curlcheck2.outputs.size_download }}"
     - name: Show result
-      run: echo "The curl result is ${{ RETURN_VAL }}"
+      run: echo "The curl result is ${{ env.RETURN_VAL }}"
       
 
       
