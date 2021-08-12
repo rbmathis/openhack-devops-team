@@ -35,7 +35,7 @@ jobs:
         ./stg_poihttp.sh
         
     - name: write output
-      run: echo ${{APIPRODSTATUS}}
+      run: echo ${{env.APIPRODSTATUS}}
         
     
 
