@@ -37,7 +37,15 @@ jobs:
     - name: stage validation result
       run: "echo Status is: ${{env.SITESTATUS}}"
 
+#if env.SITESTATUS==true, do a slot swap and check the production URL
+    - name : check result
+      if: ${{ env.SITESTATUS == true }}
+      run: echo ${{ env.SITESTATUS }}
 
+    - name : check result
+      if: ${{ env.SITESTATUS == false }}
+      run: echo ${{ env.SITESTATUS }}
+      
     - name: Validate Prod Deployment
       run: |
         pwd
