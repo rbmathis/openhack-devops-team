@@ -25,12 +25,6 @@ jobs:
     - name: thischeck
       id: curlcheck2
       run: curl ${{ env.STAGINGSLOT }}
-
-    - name: Show result
-      run: echo "The curl result is ${{ steps.thischeck.outputs.%{stdout} }}"
-
-    - name: Show result
-      run: echo "The curl result is ${{ steps.curlcheck2.outputs.%{stdout} }}"
-      
+     
     - name: Show result
       run: echo "The curl result is ${{ steps.curlcheck2.outputs.%{response} }}"
