@@ -28,7 +28,7 @@ jobs:
       run: curl ${{env.STAGINGSLOT}} --write-out '%{http_code}'
       
     - name: Show result
-      run: echo "The curl result is $CODE"
+      run: echo ${{steps.curlcheck2}}
       
 
       
