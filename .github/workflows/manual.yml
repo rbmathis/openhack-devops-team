@@ -32,7 +32,7 @@ jobs:
         pwd
         ls -la
         chmod +x stg_poihttp.sh
-        ./stg_poihttp.sh ${{env.STAGINGSLOT}}
+        ./stg_poihttp.sh ${{env.STAGINGSLOT}} Healthy
         
     - name: stage validation result
       run: "echo Status is: ${{env.SITESTATUS}}"
@@ -43,7 +43,7 @@ jobs:
         pwd
         ls -la
         chmod +x stg_poihttp.sh
-        ./stg_poihttp.sh ${{env.PRODUCTIONSLOT}}
+        ./stg_poihttp.sh ${{env.PRODUCTIONSLOT}} Healthy
         
     - name: stage validation result
       run: "echo Status is: ${{env.SITESTATUS}}"
