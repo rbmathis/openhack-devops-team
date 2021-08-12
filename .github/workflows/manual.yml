@@ -2,6 +2,14 @@
 
 name: Manual workflow
 
+env:
+  APPLICATIONPATH: Application
+  DOCKERFILEPATH: "apis/poi/web"
+  REGISTRYNAME: "openhackwf422ai1acr"
+  IMAGENAME: "devopsoh/api-poi"
+  STAGINGSLOT: "https://openhackwf422ai1poi-staging.azurewebsites.net/api/healthcheck/poi"
+  PRODUCTIONSLOT: "https://openhackwf422ai1poi.azurewebsites.net/api/healthcheck/poi"
+
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
