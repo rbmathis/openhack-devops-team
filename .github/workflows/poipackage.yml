@@ -75,6 +75,7 @@ jobs:
     - name : do slotswap
       if: ${{env.SITESTATUS == 'true'}}
       run: |
+        az webapp start --name ${{env.APPSERVICE_NAME}} --resource-group ${{env.RESOURCE_GROUP}}
         az webapp deployment slot swap  -g ${{env.RESOURCE_GROUP}} -n ${{env.APPSERVICE_NAME}} --slot staging --target-slot production
         az webapp config container show --name ${{env.APPSERVICE_NAME}} --resource-group ${{env.RESOURCE_GROUP}}
         az webapp config container show --name ${{env.APPSERVICE_NAME}} --resource-group ${{env.RESOURCE_GROUP}} --slot staging
