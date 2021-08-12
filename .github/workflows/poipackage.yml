@@ -17,6 +17,8 @@ env:
   DOCKERFILEPATH: "apis/poi/web"
   REGISTRYNAME: "openhackwf422ai1acr"
   IMAGENAME: "devopsoh/api-poi"
+  STAGINGSLOT: "https://openhackwf422ai1poi-staging.azurewebsites.net"
+  PRODUCTIONSLOT: "https://openhackwf422ai1poi.azurewebsites.net"
 
 jobs:
   build:
