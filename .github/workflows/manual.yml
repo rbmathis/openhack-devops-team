@@ -29,10 +29,10 @@ jobs:
 
     - name: thischeck2
       id: curlcheck3
-      run: '${{ env.RETURN_VAL }} = curl ${{ env.STAGINGSLOT }}'
+      run: '%test = curl ${{ env.STAGINGSLOT }}'
 
     - name: Show result
-      run: echo "The curl result is ${{ env.RETURN_VAL }}"
+      run: echo "The curl result is ${{ test }}"
       
     - name: Show result
       run: echo "The curl result is ${{ steps.curlcheck3.outputs.THIS_VAL }}"
