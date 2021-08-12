@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 env:
   APPLICATIONPATH: Application
-  DOCKERFILEPATH: "/apis/poi/web"
+  DOCKERFILEPATH: "apis/poi/web"
   REGISTRYNAME: "openhackwf422ai1acr"
   IMAGENAME: "devopsoh/api-poi"
   acr_username: "openhackwf422ai1acr"
