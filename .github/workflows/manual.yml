@@ -25,7 +25,7 @@ jobs:
     steps:
     - name: thischeck
       id: curlcheck2
-      run: curl --write-out '%{http_code}'
+      run: curl ${{env.STAGINGSLOT}} --write-out '%{http_code}'
       
     - name: Show result
       run: echo "The curl result is $CODE"
