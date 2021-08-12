@@ -3,6 +3,7 @@
 name: Manual workflow
 
 env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   APPLICATIONPATH: Application
   DOCKERFILEPATH: "apis/poi/web"
   REGISTRYNAME: "openhackwf422ai1acr"
