@@ -32,10 +32,10 @@ jobs:
         pwd
         ls -la
         chmod +x stg_poihttp.sh
-        ./stg_poihttp.sh
+        ./stg_poihttp.sh ${{env.STAGINGSLOT}}
         
     - name: write output
-      run: echo ${{env.APIPRODSTATUS}}
+      run: "echo Status is: ${{env.APIPRODSTATUS}}"
         
     
 
