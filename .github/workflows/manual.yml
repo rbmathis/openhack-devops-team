@@ -22,8 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: thischeck
-    - id: curclcheck2
     - run: curl ${{ env.STAGINGSLOT }}
 
     - name: Show result
-      run: echo "The curl result is ${{ steps.curclcheck2 }}"
+      run: echo "The curl result is ${{ steps.thischeck }}"
