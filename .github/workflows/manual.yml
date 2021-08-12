@@ -18,16 +18,15 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
   curlcheck:
     runs-on: ubuntu-latest
     steps:
     - uses: enflo/curl-action@v1.2
+      id: curlcheck
       with:
         curl: ${{ env.STAGINGSLOT }}
 
-    - name: Set selected color
-      run: echo '::set-output name=SELECTED_COLOR::green'
-      id: random-color-generator
-    - name: Get color
-      run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
+    - run: curl ${{ env.STAGINGSLOT }}
+
+    - name: Show result
+      run: echo "The curl result is ${{ steps.curlcheck }}"
