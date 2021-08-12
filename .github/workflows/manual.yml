@@ -15,6 +15,7 @@ env:
 on:
   workflow_dispatch:
 
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "greet"
@@ -24,3 +25,9 @@ jobs:
     - uses: enflo/curl-action@v1.2
       with:
         curl: ${{ env.STAGINGSLOT }}
+
+    - name: Set selected color
+      run: echo '::set-output name=SELECTED_COLOR::green'
+      id: random-color-generator
+    - name: Get color
+      run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
