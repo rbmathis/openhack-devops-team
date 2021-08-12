@@ -44,7 +44,7 @@ jobs:
 
     - name : check result false
       if: ${{env.SITESTATUS}} == false
-      run: echo ${{ env.SITESTATUS }}
+      run: "echo it failed : ${{ env.SITESTATUS }}"
       
     - name: Validate Prod Deployment
       run: |
