@@ -10,6 +10,7 @@ env:
   STAGINGSLOT: "https://openhackwf422ai1poi-staging.azurewebsites.net/api/healthcheck/poi"
   PRODUCTIONSLOT: "https://openhackwf422ai1poi.azurewebsites.net/api/healthcheck/poi"
   RETURN_VAL: "test"
+  
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -23,12 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: thischeck
-      id: curlcheck2
-      run: curl ${{env.STAGINGSLOT}} --write-out '%{http_code}'
-      
-    - name: Show result
-      run: echo ${{steps.curlcheck2}}
+    - name: Run Validation script
+      run: |
+        pwd
+        ls -la
+        chmod +x poihttp.sh
+        ./poihttp.sh
       
 
       
