@@ -39,7 +39,7 @@ jobs:
 
 #if env.SITESTATUS==true, do a slot swap and check the production URL
     - name : check result
-      if: ${{ env.SITESTATUS == true }}
+      if: ${{env.SITESTATUS}}==true
       run: echo ${{ env.SITESTATUS }}
 
     - name : check result
