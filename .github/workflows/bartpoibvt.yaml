@@ -3,7 +3,6 @@ name: BartPOIBVT
 on:
   pull_request:
    types: opened
-   branches-ignore: [master]
    paths: '/apis/poi/**'
 
 
