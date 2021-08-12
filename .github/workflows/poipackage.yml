@@ -60,7 +60,7 @@ jobs:
         
 #if env.SITESTATUS==true, do a slot swap and check the production URL
     - name : check result false
-      if: ${{env.SITESTATUS}} == "false"
+      if: ${{env.SITESTATUS == "false"}}
       run: "echo it failed : ${{ env.SITESTATUS }}"
 
 
@@ -72,5 +72,5 @@ jobs:
         chmod +x stg_poihttp.sh
         ./stg_poihttp.sh ${{env.PRODUCTIONSLOT}} Healthy
         
-    - name: stage validation result
+    - name: prod validation result
       run: "echo Status is: ${{env.SITESTATUS}}"
