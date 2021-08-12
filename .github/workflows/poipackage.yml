@@ -20,7 +20,7 @@ env:
 
 jobs:
   build:
-    name: Build and push Application to ACR
+    name: Package POI Container and Deploy To Staging
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
