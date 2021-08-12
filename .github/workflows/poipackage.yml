@@ -34,6 +34,9 @@ jobs:
         username: ${{ env.acr_username }}
         password: ${{ env.acr_password }}
 
+    - name: debug helper
+      run: echo '::docker build "$GITHUB_WORKSPACE/${{env.DOCKERFILEPATH}}" -f  "${{env.DOCKERFILEPATH}}/Dockerfile" -t ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}'
+
     - name: Docker Build & Push to ACR
       run: |
         docker login ${{ env.REGISTRYNAME }}.azurecr.io --username ${{ env.acr_username }} --password ${{ env.acr_password }}
