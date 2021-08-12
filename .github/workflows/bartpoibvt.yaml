@@ -2,8 +2,6 @@ name: BartPOIBVT
 
 on:
   pull_request:
-   paths: '/apis/poi/**'
-
 
 jobs:
   build:
