@@ -17,8 +17,6 @@ env:
   DOCKERFILEPATH: "apis/poi/web"
   REGISTRYNAME: "openhackwf422ai1acr"
   IMAGENAME: "devopsoh/api-poi"
-  acr_username: "openhackwf422ai1acr"
-  acr_password: "dK2R37KuHxSLuPw6meHQtPZUAfQ/UbAa"
 
 jobs:
   build:
@@ -31,8 +29,8 @@ jobs:
       uses: azure/docker-login@v1
       with:
         login-server: ${{ env.REGISTRYNAME }}.azurecr.io
-        username: ${{ env.acr_username }}
-        password: ${{ env.acr_password }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
 
     - name: debug helper
       run: echo '::docker build "$GITHUB_WORKSPACE/${{env.DOCKERFILEPATH}}" -f  "${{env.DOCKERFILEPATH}}/Dockerfile" -t ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}'
@@ -42,3 +40,9 @@ jobs:
         docker login ${{ env.REGISTRYNAME }}.azurecr.io --username ${{ env.acr_username }} --password ${{ env.acr_password }}
         docker build "$GITHUB_WORKSPACE/${{env.DOCKERFILEPATH}}" -f  "${{env.DOCKERFILEPATH}}/Dockerfile" -t ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}
         docker push ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}
+
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'openhackwf422ai1poi'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: '${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}'
