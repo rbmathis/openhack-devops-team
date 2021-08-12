@@ -9,6 +9,7 @@ env:
   IMAGENAME: "devopsoh/api-poi"
   STAGINGSLOT: "https://openhackwf422ai1poi-staging.azurewebsites.net/api/healthcheck/poi"
   PRODUCTIONSLOT: "https://openhackwf422ai1poi.azurewebsites.net/api/healthcheck/poi"
+  RETURN_VAL: ""
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -24,7 +25,16 @@ jobs:
     steps:
     - name: thischeck
       id: curlcheck2
-      run: curl ${{ env.STAGINGSLOT }}
+      run: curl ${{ env.STAGINGSLOT }} >> RETURN_VAL
      
     - name: Show result
-      run: echo "The curl result is ${{ steps.curlcheck2.outputs.{response} }}"
+      run: echo "The curl result is ${{ steps.curlcheck2.outputs.response }}"
+    - name: Show result
+      run: echo "The curl result is ${{ steps.curlcheck2.outputs.response_code }}"
+    - name: Show result
+      run: echo "The curl result is ${{ steps.curlcheck2.outputs.size_download }}"
+    - name: Show result
+      run: echo "The curl result is ${{ RETURN_VAL }}"
+      
+
+      
