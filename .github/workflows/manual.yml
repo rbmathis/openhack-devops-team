@@ -32,7 +32,7 @@ jobs:
       run: '$RETURN_VAL = curl ${{ env.STAGINGSLOT }}'
 
     - name: Show result
-      run: echo "The curl result is ${{ %RETURN_VAL }}"
+      run: echo "The curl result is $RETURN_VAL"
       
     - name: Show result
       run: echo "The curl result is ${{ steps.curlcheck3.outputs.THIS_VAL }}"
