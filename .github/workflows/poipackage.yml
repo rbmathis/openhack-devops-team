@@ -19,6 +19,7 @@ env:
   IMAGENAME: "devopsoh/api-poi"
   STAGINGSLOT: "https://openhackwf422ai1poi-staging.azurewebsites.net/api/healthcheck/poi"
   PRODUCTIONSLOT: "https://openhackwf422ai1poi.azurewebsites.net/api/healthcheck/poi"
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
   build:
@@ -60,6 +61,10 @@ jobs:
     - name: stage validation result
       run: "echo Status is: ${{env.SITESTATUS}}"
 
+#if env.SITESTATUS==true, do a slot swap and check the production URL
+    - name : check result
+      if: ${{ env.SITESTATUS == true }}
+      run: echo "Deploying to production server on branch $GITHUB_REF"
 
     - name: Validate Prod Deployment
       run: |
