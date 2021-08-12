@@ -34,6 +34,9 @@ jobs:
         chmod +x stg_poihttp.sh
         ./stg_poihttp.sh
         
+    - name: write output
+      run: echo ${{APIPRODSTATUS}}
+        
     
 
       
