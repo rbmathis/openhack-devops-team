@@ -20,9 +20,11 @@ on:
 jobs:
   curlcheck:
     runs-on: ubuntu-latest
+    
     steps:
     - name: thischeck
-    - run: curl ${{ env.STAGINGSLOT }}
+      id: curlcheck2
+      run: curl ${{ env.STAGINGSLOT }}
 
     - name: Show result
-      run: echo "The curl result is ${{ steps.thischeck }}"
+      run: echo "The curl result is ${{ steps.curlcheck2 }}"
