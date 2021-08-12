@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: POIPackageAndPublish
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+    paths:
+      - 'apis/poi**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+env:
+  APPLICATIONPATH: Application
+  DOCKERFILEPATH: "/apis/poi/web"
+  REGISTRYNAME: "openhackwf422ai1acr"
+  IMAGENAME: "devopsoh/api-poi"
+  acr_username: "openhackwf422ai1acr"
+  acr_password: "dK2R37KuHxSLuPw6meHQtPZUAfQ/UbAa"
+
+jobs:
+  build:
+    name: Build and push Application to ACR
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: ACR authentication
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.REGISTRYNAME }}.azurecr.io
+        username: ${{ env.acr_username }}
+        password: ${{ env.acr_password }}
+
+    - name: Docker Build & Push to ACR
+      run: |
+        docker login ${{ env.REGISTRYNAME }}.azurecr.io --username ${{ env.acr_username }} --password ${{ env.acr_password }}
+        docker build "$GITHUB_WORKSPACE/${{env.DOCKERFILEPATH}}" -f  "${{env.DOCKERFILEPATH}}/Dockerfile" -t ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}
+        docker push ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}
