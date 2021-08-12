@@ -11,8 +11,6 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using poi.Data;
 
-
-
 namespace poi
 {
     [ExcludeFromCodeCoverage]
