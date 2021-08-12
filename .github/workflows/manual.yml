@@ -43,7 +43,7 @@ jobs:
       run: echo ${{ env.SITESTATUS }}
 
     - name : check result
-      if: ${{ env.SITESTATUS == false }}
+      if: ${{env.SITESTATUS}} == false
       run: echo ${{ env.SITESTATUS }}
       
     - name: Validate Prod Deployment
