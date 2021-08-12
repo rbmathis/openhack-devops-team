@@ -31,7 +31,8 @@ jobs:
         pwd
         ls -la
         chmod +x poihttp.sh
-        ./poihttp.sh
-      
+        ./stg_poihttp.sh
+        
+    
 
       
