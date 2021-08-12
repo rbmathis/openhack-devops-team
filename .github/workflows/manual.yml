@@ -30,7 +30,7 @@ jobs:
       run: |
         pwd
         ls -la
-        chmod +x poihttp.sh
+        chmod +x stg_poihttp.sh
         ./stg_poihttp.sh
         
     
