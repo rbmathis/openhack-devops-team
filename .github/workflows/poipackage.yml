@@ -37,7 +37,7 @@ jobs:
 
     - name: Docker Build & Push to ACR
       run: |
-        docker login ${{ env.REGISTRYNAME }}.azurecr.io --username ${{ env.acr_username }} --password ${{ env.acr_password }}
+        docker login ${{ env.REGISTRYNAME }}.azurecr.io --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
         docker build "$GITHUB_WORKSPACE/${{env.DOCKERFILEPATH}}" -f  "${{env.DOCKERFILEPATH}}/Dockerfile" -t ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}
         docker push ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}
 
