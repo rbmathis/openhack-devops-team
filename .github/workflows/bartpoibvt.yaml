@@ -1,12 +1,9 @@
-name: .NET
+name: BartPOIBVT
 
 on:
-  push:
-    pull_request:
-     branches-ignore:
-     - master
-    paths:
-     - '/apis/poi/**'
+  pull_request:
+   branches-ignore: [master]
+   paths: '/apis/poi/**'
 
 
 jobs:
