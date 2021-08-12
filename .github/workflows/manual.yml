@@ -29,7 +29,7 @@ jobs:
 
     - name: thischeck2
       id: curlcheck3
-      run: echo '::set-output name=THIS_VAL::curl ${{ env.STAGINGSLOT }}'
+      run: 'RETURN_VAL = curl ${{ env.STAGINGSLOT }}'
 
     - name: Show result
       run: echo "The curl result is ${{ env.RETURN_VAL }}"
