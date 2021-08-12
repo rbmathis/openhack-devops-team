@@ -89,6 +89,12 @@ jobs:
     - name: prod validation result
       run: "echo Status is: ${{env.SITESTATUS}}"
       
+    - name: login to azure
+      if: ${{env.SITESTATUS == 'true'}}
+      uses: azure/login@releases/v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
     - name : turn off staging slot
       if: ${{env.SITESTATUS == 'true'}}
       run: |
