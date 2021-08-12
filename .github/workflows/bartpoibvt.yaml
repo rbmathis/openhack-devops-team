@@ -3,7 +3,8 @@ name: BartPOIBVT
 on:
   workflow_dispatch:
   pull_request:
-
+    paths:
+      - '**poi/**'
 
 env:
   PROJECT_PATH: './apis/poi/web/poi.csproj'
