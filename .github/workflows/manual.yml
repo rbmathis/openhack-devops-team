@@ -38,16 +38,13 @@ jobs:
       run: "echo Status is: ${{env.SITESTATUS}}"
 
 #if env.SITESTATUS==true, do a slot swap and check the production URL
-    - name : check result true
-      if: ${{env.SITESTATUS == true}}
-      run: echo ${{ env.SITESTATUS }}
-      
+   
     - name : check result true
       if: ${{env.SITESTATUS == 'true'}}
       run: echo ${{ env.SITESTATUS }}
 
     - name : check result false
-      if: ${{env.SITESTATUS == false}}
+      if: ${{env.SITESTATUS == 'false'}}
       run: "echo it failed : ${{ env.SITESTATUS }}"
       
     - name: Validate Prod Deployment
