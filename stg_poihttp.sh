@@ -1,59 +1,37 @@
 #!/bin/bash
 
-declare -i duration=10
-declare hasUrl=""
+#Will set a GH env var called SITESTATUS to either true or false
+
 declare endpoint
-declare -i status200count=0
+declare textToCheck
 
-# Paste the webapp site you want to monitor
-endpoint='https://openhackflo1xyl7poi-staging.azurewebsites.net/api/healthcheck/poi'
-endpoint=$1
+endpoint=$1			#Url to curl
+textToCheck=$2		#Text to check for existence in the curl result, fails if not found
 
-healthcheck() {
-    declare url=$1
-    result=$(curl -i $url 2>/dev/null | grep HTTP/2)
-   # echo 'here'
-    echo $result
-}
 
-for i in {1..12}
-do
- # echo 'in check'
- # result='healthcheck $endpoint' 
-  result=$(curl -i $endpoint 2>/dev/null | grep HTTP/2)
-  declare status
-  if [[ -z $result ]]; then 
-    status="N/A"
-    echo "Site not found"
-  else
-    status=${result:7:3}
-    timestamp=$(date "+%Y%m%d-%H%M%S")
-    if [[ -z $hasUrl ]]; then
-      echo "$timestamp | $status "
-    else
-      echo "$timestamp | $status | $endpoint " 
-    fi 
-    echo $status
-    if [ $status -eq 200 ]; then
-      ((status200count=status200count + 1))
+result=$(curl $endpoint)
+declare status
+if [[ -z $result ]]; then 
+	status="N/A"
+	echo "Site not found at $endpoint"
+	APISTATUS="Down"
+	echo ::set-env name=SITESTATUS::false
 
-      if [ $status200count -gt 5 ]; then
-          break
-      fi
-    fi
+	else
 
-    sleep $duration
-  fi
-done
+		if [[ $result == *"$textToCheck"* ]]; then
 
-if [ $status200count -gt 5 ]; then
-  echo "API UP"
-  # APISTATUS is a pipeline variable
-  APISTATUS="Up"
-  echo ::set-env name=SITESTATUS::true
-else
-  echo "API DOWN"
-  APISTATUS="Down"
-  echo ::set-env name=SITESTATUS::false
-  #exit 1;
+			echo "yep"
+			APISTATUS="Up"
+			echo ::set-env name=SITESTATUS::true
+
+		else
+			echo "nope"
+			APISTATUS="Down"
+			echo ::set-env name=SITESTATUS::false
+		fi
+
 fi
+
+
+exit 0;
