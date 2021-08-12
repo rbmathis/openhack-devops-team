@@ -25,6 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - name: login to azure
+      if: ${{env.SITESTATUS == 'true'}}
+      uses: azure/login@releases/v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
     - uses: actions/checkout@v2
     
     - name: Validate Stage Deployment
