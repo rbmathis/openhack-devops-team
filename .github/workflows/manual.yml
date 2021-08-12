@@ -27,4 +27,4 @@ jobs:
       run: curl ${{ env.STAGINGSLOT }}
      
     - name: Show result
-      run: echo "The curl result is ${{ steps.curlcheck2.outputs.%{response} }}"
+      run: echo "The curl result is ${{ steps.curlcheck2.outputs.{response} }}"
