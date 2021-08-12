@@ -8,7 +8,7 @@ on:
 
 env:
   PROJECT_PATH: './apis/poi/web/poi.csproj'
-  TEST_PATH: './apis/poi/tests/UnitTests.csproj'
+  TEST_PATH: './apis/poi/tests/UnitTests/UnitTests.csproj'
 
 jobs:
   build:
