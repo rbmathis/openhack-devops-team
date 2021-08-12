@@ -27,16 +27,26 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Run Validation script
+    - name: Validate Stage Deployment
       run: |
         pwd
         ls -la
         chmod +x stg_poihttp.sh
         ./stg_poihttp.sh ${{env.STAGINGSLOT}}
         
-    - name: write output
-      run: "echo Status is: ${{env.APIPRODSTATUS}}"
+    - name: stage validation result
+      run: "echo Status is: ${{env.SITESTATUS}}"
+
+
+    - name: Validate Prod Deployment
+      run: |
+        pwd
+        ls -la
+        chmod +x stg_poihttp.sh
+        ./stg_poihttp.sh ${{env.PRODUCTIONSLOT}}
         
+    - name: stage validation result
+      run: "echo Status is: ${{env.SITESTATUS}}"
     
 
       
