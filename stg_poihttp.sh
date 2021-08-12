@@ -50,10 +50,10 @@ if [ $status200count -gt 5 ]; then
   echo "API UP"
   # APISTATUS is a pipeline variable
   APISTATUS="Up"
-  echo ::set-env name=APIPRODSTATUS::true
+  echo ::set-env name=SITESTATUS::true
 else
   echo "API DOWN"
   APISTATUS="Down"
-  echo ::set-env name=APIPRODSTATUS::false
+  echo ::set-env name=SITESTATUS::false
   #exit 1;
 fi
