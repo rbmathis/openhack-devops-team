@@ -7,6 +7,7 @@ declare -i status200count=0
 
 # Paste the webapp site you want to monitor
 endpoint='https://openhackflo1xyl7poi-staging.azurewebsites.net/api/healthcheck/poi'
+endpoint=$1
 
 healthcheck() {
     declare url=$1
@@ -54,5 +55,5 @@ else
   echo "API DOWN"
   APISTATUS="Down"
   echo ::set-env name=APIPRODSTATUS::false
-  exit 1;
+  #exit 1;
 fi
