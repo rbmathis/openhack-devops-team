@@ -69,7 +69,7 @@ jobs:
     - name : do slotswap
       if: ${{env.SITESTATUS == 'true'}}
       run: |
-        az webapp deployment slot swap  -g ${{env.RESOURCE_GROUP}} -n ${{APPSERVICE_NAME}} --slot staging --target-slot production
+        az webapp deployment slot swap  -g ${{env.RESOURCE_GROUP}} -n ${{env.APPSERVICE_NAME}} --slot staging --target-slot production
       
     - name: Validate Prod Deployment
       run: |
