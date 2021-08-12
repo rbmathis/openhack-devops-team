@@ -13,6 +13,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 env:
+  RESOURCE_GROUP: openhackwf422ai1rg
+  APPSERVICE_NAME: openhackwf422ai1poi
   APPLICATIONPATH: Application
   DOCKERFILEPATH: "apis/poi/web"
   REGISTRYNAME: "openhackwf422ai1acr"
@@ -58,13 +60,17 @@ jobs:
         chmod +x stg_poihttp.sh
         ./stg_poihttp.sh ${{env.STAGINGSLOT}} Healthy
         
-#if env.SITESTATUS==true, do a slot swap and check the production URL
+#if env.SITESTATUS==false, stop here 
     - name : check result false
-      if: ${{env.SITESTATUS == "false"}}
+      if: ${{env.SITESTATUS == 'false'}}
       run: "echo it failed : ${{ env.SITESTATUS }}"
 
-
-
+#if env.SITESTATUS==true, do a slot swap and check the production URL
+    - name : do slotswap
+      if: ${{env.SITESTATUS == 'true'}}
+      run: |
+        az webapp deployment slot swap  -g ${{env.RESOURCE_GROUP}} -n ${{APPSERVICE_NAME}} --slot staging --target-slot production
+      
     - name: Validate Prod Deployment
       run: |
         pwd
